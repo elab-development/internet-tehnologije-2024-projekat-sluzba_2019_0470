@@ -23,22 +23,26 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
+        $ime = $this->faker->firstName;
+        $prezime = $this->faker->lastName;
+        $godina_upisa = $this->faker->numberBetween(2017, 2024);
+        $redni_broj = str_pad($this->faker->unique()->numberBetween(1, 1100), 4, '0', STR_PAD_LEFT);
+    
+        $email_prefix = strtolower(substr($ime, 0, 1) . substr($prezime, 0, 1)) . $godina_upisa . $redni_broj;
+        $email = $email_prefix . '@student.fon.bg.ac.rs';
+         
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'ime' => $ime,
+            'prezime' => $prezime,
+            'email' => $email,
+            'password' => bcrypt('lozinka'),
+            'broj_indeksa' => $godina_upisa . '/' . $redni_broj,
+            'smer' => $this->faker->randomElement(['Informacione Tehnologije i Sistemi', 
+             'Menadzment', 'Operacioni Menadzment']),
+            'godina_studija' => $this->faker->numberBetween(1, 4),
+            'role' => 'student',
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
-    }
 }

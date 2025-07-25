@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('espb');
             $table->boolean('obavezan')->default(true);
             $table->unsignedTinyInteger('godina');
+            $table->unsignedTinyInteger('semestar');
             $table->unsignedBigInteger('profesor_id');
             $table->timestamps();
         });

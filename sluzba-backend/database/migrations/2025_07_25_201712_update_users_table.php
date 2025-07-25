@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('email_verified_at');
-
-            $table->string('broj_indeksa')->nullable();
-            $table->unsignedTinyInteger('godina_studija')->nullable();
-            $table->string('smer')->nullable();
-            $table->enum('role', ['student', 'sluzbenik']);
+            $table->dropColumn('name');
+    
+            $table->string('ime')->after('id');
+            $table->string('prezime')->after('ime');
+            $table->string('broj_indeksa')->nullable()->after('prezime');
+            $table->unsignedTinyInteger('godina_studija')->nullable()->after('broj_indeksa');
+            $table->string('smer')->nullable()->after('godina_studija');
+            $table->enum('role', ['student', 'sluzbenik'])->after('smer');
         });
     }
 

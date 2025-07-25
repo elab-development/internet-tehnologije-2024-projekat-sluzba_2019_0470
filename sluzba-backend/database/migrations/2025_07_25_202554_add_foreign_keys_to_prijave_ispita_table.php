@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('prijave_ispita', function (Blueprint $table) {
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('predmet_id')->references('id')->on('predmeti')->onDelete('cascade');
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('prijave_ispita', function (Blueprint $table) {
-            $table->dropForeign(['student_id']);
+            $table->dropForeign(['user_id']);
             $table->dropForeign(['predmet_id']);
         });
     }

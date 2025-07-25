@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('prijave_ispita', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id'); // user_id
+            $table->unsignedBigInteger('user_id'); // user_id
             $table->unsignedBigInteger('predmet_id');
             $table->tinyInteger('rok')->comment('Broj ispitnog roka, npr. 1-6');
             $table->tinyInteger('broj_prijave')->comment('Koliko puta je prijavio ispit');
