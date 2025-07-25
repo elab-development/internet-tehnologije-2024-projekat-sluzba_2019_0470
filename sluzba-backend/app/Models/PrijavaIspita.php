@@ -3,24 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class PrijavaIspita extends Model
 {
+    use HasFactory;
     protected $table = 'prijave_ispita';
 
     protected $fillable = [
-        'student_id',
+        'user_id',
         'predmet_id',
-        'rok_broj',
-        'prijava_broj',
+        'rok',
+        'broj_prijave',
         'ocena',
-        'status',
-        'datum_polaganja'
+        'status'
     ];
 
-    public function student()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'student_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function predmet()

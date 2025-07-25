@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class Predmet extends Model
 {
+    use HasFactory;
     protected $table = 'predmeti';
 
     protected $fillable = [
         'naziv',
         'espb',
-        'godina_izvodi_se',
-        'obavezni',
+        'godina',
+        'obavezan',
+        'semestar',
         'profesor_id'
     ];
 

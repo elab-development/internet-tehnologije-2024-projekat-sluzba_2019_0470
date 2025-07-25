@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'ime',
+        'prezime',
         'email',
         'password',
         'role',
@@ -51,9 +52,14 @@ class User extends Authenticatable
     }
 
     public function predmeti()
-{
-    return $this->belongsToMany(Predmet::class)
-                ->withPivot('status_predavanja', 'upisano_u_godini')
-                ->withTimestamps();
-}
+    {
+        return $this->belongsToMany(Predmet::class)
+                    ->withPivot('status_predavanja', 'upisano_u_godini')
+                    ->withTimestamps();
+    }
+
+    public function prijave()
+    {
+        return $this->hasMany(PrijavaIspita::class, 'user_id');
+    }
 }
