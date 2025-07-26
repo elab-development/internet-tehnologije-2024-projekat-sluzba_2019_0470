@@ -18,6 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/predmeti/dostupni', [PredmetController::class, 'dostupniPredmeti']);
         Route::get('/predmeti/upisani', [PredmetController::class, 'upisaniPredmeti']);
         Route::get('/predmeti/upisani/{id}', [PredmetController::class, 'show']);
+        Route::post('/prijave', [PrijavaIspitaController::class, 'store']);
+        Route::put('/prijave/{id}', [PrijavaIspitaController::class, 'update']); 
+        Route::delete('/prijave/{id}', [PrijavaIspitaController::class, 'destroy']); 
+        Route::get('/prijave', [PrijavaIspitaController::class, 'mojePrijave']); 
     });
 
     // Službeni radnik rute
