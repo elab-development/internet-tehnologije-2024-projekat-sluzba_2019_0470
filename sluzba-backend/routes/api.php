@@ -2,15 +2,32 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PredmetController;
+use App\Http\Controllers\PrijavaIspitaController;
 
 Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
 
 // Grupisana ruta za autentifikovane korisnike
 Route::middleware('auth:sanctum')->group(function () {
-    
-   
     Route::post('/logout', [UserAuthController::class, 'logout']);
 
-    
+   //Student rute
+    Route::prefix('student')->group(function () {
+        Route::get('/predmeti/dostupni', [PredmetController::class, 'dostupniPredmeti']);
+        Route::get('/predmeti/upisani', [PredmetController::class, 'upisaniPredmeti']);
+        Route::get('/predmeti/upisani/{id}', [PredmetController::class, 'show']);
+    });
+
+    // Službeni radnik rute
+    Route::prefix('sluzbenik')->group(function () {
+        Route::get('/studenti', [UserController::class, 'index']);
+        Route::resource('/predmeti', PredmetController::class)->only(['index', 'update']);
+        Route::get('/prijave', [PrijavaIspitaController::class, 'index']);
+        Route::patch('/prijave/{id}/ocena', [PrijavaIspitaController::class, 'updateOcena']);
+    });
+
 });
+  
+
