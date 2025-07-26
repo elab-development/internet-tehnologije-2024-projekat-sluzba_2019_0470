@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/prijave/{id}', [PrijavaIspitaController::class, 'update']); 
         Route::delete('/prijave/{id}', [PrijavaIspitaController::class, 'destroy']); 
         Route::get('/prijave', [PrijavaIspitaController::class, 'mojePrijave']); 
+        Route::get('/metrike', [PrijavaIspitaController::class, 'studentMetrike']);
     });
 
     // Službeni radnik rute
