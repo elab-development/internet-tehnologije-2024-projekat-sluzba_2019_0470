@@ -119,9 +119,11 @@ return [
     
         App\Providers\AppServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ])->toArray(),
 
     'aliases' => [
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
     /*
