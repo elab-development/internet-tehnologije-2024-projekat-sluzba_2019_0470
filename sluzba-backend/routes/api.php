@@ -5,6 +5,7 @@ use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PredmetController;
 use App\Http\Controllers\PrijavaIspitaController;
+use App\Http\Controllers\PdfExportController;
 
 Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/prijave/{id}', [PrijavaIspitaController::class, 'destroy']); 
         Route::get('/prijave', [PrijavaIspitaController::class, 'mojePrijave']); 
         Route::get('/metrike', [PrijavaIspitaController::class, 'studentMetrike']);
+        Route::get('/pdf', [PdfExportController::class, 'eksportuj']);
     });
 
     // Službeni radnik rute
