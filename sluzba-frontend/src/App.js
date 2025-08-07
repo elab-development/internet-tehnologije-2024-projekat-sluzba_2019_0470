@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './reusable/Navigation';
-import Home from './auth/Home';
-import Login from './auth/LoginPage';
+import LoginPage from './auth/LoginPage';
+import RegisterPage from './auth/RegisterPage';
+import Home from './student/Home';
+import HomeSluzbenik from './sluzbenik/HomeSluzbenik';
 import './App.css';
 
 function App() {
@@ -12,7 +14,6 @@ function App() {
   useEffect(() => {
     const token = sessionStorage.getItem('access_token');
     const storedUser = sessionStorage.getItem('user');
-
     if (token && storedUser) {
       setAccessToken(token);
       setUser(JSON.parse(storedUser));
@@ -31,23 +32,36 @@ function App() {
     sessionStorage.removeItem('user');
   };
 
-  if (!user) {
-    return (
-      <BrowserRouter>
-        <Login onLoginSuccess={handleLoginSuccess} />
-      </BrowserRouter>
-    );
-  }
-
   return (
     <BrowserRouter>
-      <Navigation user={user} onLogout={handleLogout} />
-      <main style={{ marginTop: '56px', padding: '2rem' }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* Ostale rute po potrebi */}
-        </Routes>
-      </main>
+      {user && <Navigation user={user} onLogout={handleLogout} />}
+
+      <Routes>
+        {/* Ako nije ulogovan, šalje na Login */}
+        {!user && (
+          <>
+            <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
+
+        {/* Ako je ulogovan student */}
+        {user && user.role === 'student' && (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<Navigate to="/home" />} />
+          </>
+        )}
+
+        {/* Ako je ulogovan službenik */}
+        {user && user.role === 'sluzbenik' && (
+          <>
+            <Route path="/sluzbenik/home" element={<HomeSluzbenik />} />
+            <Route path="*" element={<Navigate to="/sluzbenik/home" />} />
+          </>
+        )}
+      </Routes>
     </BrowserRouter>
   );
 }

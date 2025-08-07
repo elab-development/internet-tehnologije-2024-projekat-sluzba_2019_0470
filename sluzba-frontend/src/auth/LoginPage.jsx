@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Form from '../reusable/Form';
 import axios from 'axios';
 
-function Login({ onLoginSuccess }) {
+function LoginPage({ onLoginSuccess }) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,34 +13,32 @@ function Login({ onLoginSuccess }) {
     { label: 'Lozinka', name: 'password', type: 'password', placeholder: 'Unesite lozinku' },
   ];
 
- const handleSubmit = async (data) => {
+  const handleSubmit = async (data) => {
     setLoading(true);
     setError(null);
-
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/login', data, {
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        },
-        });
+      const response = await axios.post('http://127.0.0.1:8000/api/login', data);
+      const { access_token, user } = response.data;
+      sessionStorage.setItem('access_token', access_token);
+      sessionStorage.setItem('user', JSON.stringify(user));
 
-        const { access_token, user } = response.data;
+      onLoginSuccess({ access_token, user });
 
-        // Čuvamo u sessionStorage
-        sessionStorage.setItem('access_token', access_token);
-        sessionStorage.setItem('user', JSON.stringify(user));
-
-        // Prosleđujemo roditeljskoj komponenti (App.js)
-        onLoginSuccess({ access_token, user });
+      // Preusmeravanje na osnovu role:
+      if (user.role === 'student') {
+        navigate('/home');
+      } else if (user.role === 'sluzbenik') {
+        navigate('/sluzbenik/home');
+      } else {
+        navigate('/home'); // fallback
+      }
 
     } catch (err) {
-        setError(err.response?.data?.message || 'Greška pri prijavi.');
+      setError(err.response?.data?.message || 'Greška pri prijavi.');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-    };
-
+  };
 
   return (
     <Form
@@ -51,4 +51,4 @@ function Login({ onLoginSuccess }) {
   );
 }
 
-export default Login;
+export default LoginPage;

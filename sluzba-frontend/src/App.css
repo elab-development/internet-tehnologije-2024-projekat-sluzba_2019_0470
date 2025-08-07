@@ -35,7 +35,7 @@ a {
 a:hover,
 a:focus {
   color: var(--accent-1);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 h1, h2, h3, h4 {
@@ -360,6 +360,8 @@ ul, ol {
 .sidebar-link:focus {
   background-color: var(--accent-1);
   color: var(--blue-dark);
+  transition: background-color 0.2s ease;
+
 }
 
 .sidebar-link .icon {
@@ -378,5 +380,50 @@ ul, ol {
   background-color: rgba(0,0,0,0.4);
   z-index: 999;
 }
+
+.home {
+  padding: 50px 100px;
+  margin-top: 56px; /* visina navbar-a */
+  background-color: var(--blue-light);
+  min-height: calc(100vh - 56px);
+  color: var(--white);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.cards-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: var(--blue-dark);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  flex: 1 1 300px; /* fleksibilna širina, min 300px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.card-image {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
 
 
