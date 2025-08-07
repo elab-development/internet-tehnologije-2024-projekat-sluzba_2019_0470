@@ -7,6 +7,8 @@ import Home from './student/Home';
 import HomeSluzbenik from './sluzbenik/HomeSluzbenik';
 import './App.css';
 import Footer from './reusable/Footer';
+import SluzbenikPredmeti from './sluzbenik/SluzbenikPredmeti';
+import SluzbenikStudenti from './sluzbenik/SluzbenikStudenti';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +60,8 @@ function App() {
         {user && user.role === 'sluzbenik' && (
           <>
             <Route path="/sluzbenik/home" element={<HomeSluzbenik />} />
+            <Route path="/sluzbenik/predmeti" element={<SluzbenikPredmeti />} />
+            <Route path="/sluzbenik/studenti" element={<SluzbenikStudenti />} />
           </>
         )}
       </Routes>
