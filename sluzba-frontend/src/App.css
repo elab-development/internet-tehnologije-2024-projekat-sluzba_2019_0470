@@ -1,1 +1,382 @@
 
+:root {
+  --white: #ffffff;
+  --blue-light: #5b8def;   /* svetlija plava */
+  --blue-dark: #3d6ecb;    /* tamnija plava */
+  --accent-1: #a7d948;     /* svetlo zelena */
+  --accent-2: #7fae28;     /* tamnija zelena */
+  --text-dark: #2c3e50;
+  --text-light: #ecf0f1;
+  --border-color: #d0d7de;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+/* --- GLOBALNI STILOVI --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--blue-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--blue-dark);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+a:hover,
+a:focus {
+  color: var(--accent-1);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  font-size: 1rem;
+  margin: 0 0 1.25rem 0;
+  color: var(--white);
+}
+
+/* --- DUGMAD --- */
+button,
+.button {
+  display: inline-block;
+  background-color: var(--accent-1);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  user-select: none;
+}
+
+button:hover,
+.button:hover {
+  background-color: var(--accent-2);
+  box-shadow: 0 6px 10px rgba(127, 174, 40, 0.5);
+}
+
+button:focus,
+.button:focus {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+button:disabled,
+.button:disabled {
+  background-color: var(--border-color);
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* --- TABELE --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  color: var(--text-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  margin-bottom: 1.5rem;
+}
+
+thead {
+  background-color: var(--blue-dark);
+  color: var(--white);
+}
+
+thead th {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-speed);
+}
+
+tbody tr:hover {
+  background-color: var(--text-light);
+}
+
+tbody td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+/* --- FORM ELEMENTI --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin: 0.25rem 0 1rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+  font-family: inherit;
+  box-shadow: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 6px var(--accent-1);
+  outline: none;
+}
+
+/* Form stilovi */
+.form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  background-color: var(--blue-dark);
+  border-radius: 10px;
+  box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.form-group input {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  box-shadow: 0 0 8px var(--accent-1);
+}
+
+/* Dugme je definisano već globalno u .button, ovde dodajemo marginu */
+.form-container button {
+  width: 100%;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+
+/* --- LISTE --- */
+ul, ol {
+  margin: 0 0 1rem 1.5rem;
+  padding: 0;
+  color: var(--white);
+}
+
+/* --- KONTEJNERI I LAYOUT --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- JEDNOSTAVNI KARTICE --- */
+.card {
+  background-color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  margin-bottom: 1.5rem;
+}
+
+/* --- TIPOGRAFIJA - MALI DODACI --- */
+.small-text {
+  font-size: 0.875rem;
+  color: var(--white);
+}
+
+/* --- PRIKAZ GREŠAKA --- */
+.error-message {
+  color: #e53e3e;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* --- RESPONSIVE PRIMER --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+}
+
+/* Topbar */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--blue-dark);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--white);
+  justify-content: space-between;
+  z-index: 1001;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-grow: 1;
+}
+
+.user-info {
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+.logout-button {
+  background-color: var(--accent-1);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--white);
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: var(--accent-2);
+}
+
+/* Sidebar */
+
+.sidebar {
+  position: fixed;
+  top: 56px; /* ispod topbara */
+  left: -250px;
+  width: 250px;
+  height: calc(100% - 56px);
+  background-color: var(--blue-dark);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus {
+  background-color: var(--accent-1);
+  color: var(--blue-dark);
+}
+
+.sidebar-link .icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Overlay za zatvaranje sidebar-a klikom van */
+
+.sidebar-overlay {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+

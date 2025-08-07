@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'broj_indeksa' => $this->broj_indeksa,
             'godina_studija' => $this->godina_studija,
             'smer' => $this->smer,
+            'role' => $this->role,
         ];
     }
 }
