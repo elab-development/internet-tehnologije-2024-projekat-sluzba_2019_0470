@@ -6,6 +6,7 @@ import RegisterPage from './auth/RegisterPage';
 import Home from './student/Home';
 import HomeSluzbenik from './sluzbenik/HomeSluzbenik';
 import './App.css';
+import Footer from './reusable/Footer';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,9 +41,8 @@ function App() {
         {/* Ako nije ulogovan, šalje na Login */}
         {!user && (
           <>
-            <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+            <Route path="/" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="*" element={<Navigate to="/login" />} />
           </>
         )}
 
@@ -61,6 +61,7 @@ function App() {
           </>
         )}
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

@@ -421,5 +421,26 @@ ul, ol {
   box-sizing: border-box;
 }
 
+.footer {
+  background-color: var(--blue-dark);
+  color: var(--white);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.3;
+}
+
 
 
