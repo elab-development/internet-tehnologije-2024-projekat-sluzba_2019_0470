@@ -50,7 +50,7 @@ function App() {
         {user && user.role === 'student' && (
           <>
             <Route path="/home" element={<Home />} />
-            <Route path="*" element={<Navigate to="/home" />} />
+            
           </>
         )}
 
@@ -58,7 +58,6 @@ function App() {
         {user && user.role === 'sluzbenik' && (
           <>
             <Route path="/sluzbenik/home" element={<HomeSluzbenik />} />
-            <Route path="*" element={<Navigate to="/sluzbenik/home" />} />
           </>
         )}
       </Routes>

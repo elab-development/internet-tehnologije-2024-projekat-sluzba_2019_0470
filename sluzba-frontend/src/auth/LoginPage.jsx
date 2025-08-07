@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Form from '../reusable/Form';
 import axios from 'axios';
 
@@ -24,15 +24,13 @@ function LoginPage({ onLoginSuccess }) {
 
       onLoginSuccess({ access_token, user });
 
-      // Preusmeravanje na osnovu role:
       if (user.role === 'student') {
         navigate('/home');
       } else if (user.role === 'sluzbenik') {
         navigate('/sluzbenik/home');
       } else {
-        navigate('/home'); // fallback
+        navigate('/home');
       }
-
     } catch (err) {
       setError(err.response?.data?.message || 'Greška pri prijavi.');
     } finally {
@@ -41,13 +39,22 @@ function LoginPage({ onLoginSuccess }) {
   };
 
   return (
-    <Form
-      title="Prijava"
-      fields={fields}
-      onSubmit={handleSubmit}
-      loading={loading}
-      error={error}
-    />
+    <div className="login-wrapper">
+      <Form
+        title="Prijava"
+        fields={fields}
+        onSubmit={handleSubmit}
+        loading={loading}
+        error={error}
+        columns={1}
+      />
+      <div style={{ marginTop: '1rem', color: 'var(--white)', textAlign: 'center' }}>
+        Nemate nalog?{' '}
+        <Link to="/register" style={{ color: 'var(--accent-1)', fontWeight: '600', textDecoration: 'underline' }}>
+          Registrujte se ovde
+        </Link>
+      </div>
+    </div>
   );
 }
 

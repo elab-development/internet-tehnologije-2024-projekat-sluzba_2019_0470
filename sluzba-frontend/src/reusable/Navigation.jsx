@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 
 const linksByRole = {
   student: [
-    { to: '/', label: 'Početna', icon: <FaHome /> },
+    { to: '/home', label: 'Početna', icon: <FaHome /> },
     { to: '/predmeti', label: 'Predmeti', icon: <FaBook /> },
     { to: '/prijave', label: 'Prijava ispita', icon: <FaClipboardList /> },
   ],
   sluzbenik: [
-    { to: '/studenti', label: 'Studenti', icon: <FaUsers /> },
-    { to: '/predmeti', label: 'Predmeti', icon: <FaBook /> },
-    { to: '/prijave', label: 'Prijave ispita', icon: <FaClipboardList /> },
+    { to: '/sluzbenik/home', label: 'Početna', icon: <FaUsers /> },
+    { to: '/sluzbenik/studenti', label: 'Studenti', icon: <FaUsers /> },
+    { to: '/sluzbenik/predmeti', label: 'Predmeti', icon: <FaBook /> },
+    { to: '/sluzbenik/prijave', label: 'Prijave ispita', icon: <FaClipboardList /> },
   ],
 };
 
