@@ -15,7 +15,8 @@ class PredmetController extends Controller
             return response()->json(['error' => 'Pristup dozvoljen samo službenim radnicima.'], 403);
         }
 
-        $predmeti = Predmet::with('profesor')->get();
+         $perPage = 10;  // broj po stranici
+         $predmeti = Predmet::with('profesor')->paginate($perPage);
 
         return PredmetResource::collection($predmeti);
     }

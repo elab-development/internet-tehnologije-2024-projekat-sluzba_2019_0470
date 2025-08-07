@@ -6,13 +6,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PredmetController;
 use App\Http\Controllers\PrijavaIspitaController;
 use App\Http\Controllers\PdfExportController;
+use App\Http\Controllers\ProfesorController;
 
 Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
 
+
 // Grupisana ruta za autentifikovane korisnike
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [UserAuthController::class, 'logout']);
+    
+    Route::get('/profesori', [ProfesorController::class, 'index']);
 
    //Student rute
     Route::prefix('student')->group(function () {

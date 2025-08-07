@@ -15,12 +15,16 @@ class PredmetResource extends JsonResource
     public function toArray(Request $request): array
     {
          return [
+            'id'=> $this->id, 
             'naziv' => $this->naziv,
             'espb' => $this->espb,
             'godina' => $this->godina,
             'obavezan' => $this->obavezan ? 'Obavezan' : 'Izborni',
             'semestar' => $this->semestar,
-            'profesor_id' => $this->profesor_id
+            'profesor' => [
+                'ime' => $this->profesor->ime,
+                'prezime' => $this->profesor->prezime,
+            ],
         ];
     }
 }
