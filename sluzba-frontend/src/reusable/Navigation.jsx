@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaBars, FaTimes, FaHome, FaBook, FaClipboardList, FaUsers, FaSignOutAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const linksByRole = {
   student: [
@@ -19,30 +19,32 @@ const linksByRole = {
 
 function Navigation({ user, onLogout }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const navigate = useNavigate();
   const toggleSidebar = () => setSidebarOpen(prev => !prev);
 
-  const handleLogoutClick = async () => {
-    try {
-      const token = sessionStorage.getItem('access_token');
-      await axios.post('http://127.0.0.1:8000/api/logout', {}, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+    const handleLogoutClick = async () => {
+        try {
+        const token = sessionStorage.getItem('access_token');
+        await axios.post('http://127.0.0.1:8000/api/logout', {}, {
+            headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            }
+        });
+
+        alert('Uspešno ste se odjavili.');
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('user');
+        onLogout();
+
+        navigate('/', { replace: true }); // programatsko preusmerenje na login stranicu
+
+        } catch (error) {
+        alert('Došlo je do greške prilikom odjave.');
+        console.error(error);
         }
-      });
-
-      alert('Uspešno ste se odjavili.');
-      sessionStorage.removeItem('access_token');
-      sessionStorage.removeItem('user');
-      onLogout();
-
-    } catch (error) {
-      alert('Došlo je do greške prilikom odjave.');
-      console.error(error);
-    }
-  };
+    };
 
   const links = linksByRole[user.role] || [];
 
