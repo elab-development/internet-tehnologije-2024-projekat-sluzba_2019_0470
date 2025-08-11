@@ -363,7 +363,7 @@ ul, ol {
   z-index: 999;
 }
 
-.home {
+.home, .prijava-ispita, .predmeti {
   padding: 50px 100px;
   margin-top: 56px; /* visina navbar-a */
   background-color: var(--blue-light);

@@ -9,6 +9,10 @@ import './App.css';
 import Footer from './reusable/Footer';
 import SluzbenikPredmeti from './sluzbenik/SluzbenikPredmeti';
 import SluzbenikStudenti from './sluzbenik/SluzbenikStudenti';
+import Predmeti from './student/Predmeti';
+import PrijavaIspita from './student/PrijavaIspita';
+import Prijave from './student/PrijavaIspita';
+import PrijaveSluzbenik from './sluzbenik/SluzbenikPrijavaIspita';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -52,6 +56,8 @@ function App() {
         {user && user.role === 'student' && (
           <>
             <Route path="/home" element={<Home />} />
+             <Route path="/predmeti" element={<Predmeti />} />
+             <Route path="/prijave" element={<Prijave/>} />
             
           </>
         )}
@@ -62,6 +68,7 @@ function App() {
             <Route path="/sluzbenik/home" element={<HomeSluzbenik />} />
             <Route path="/sluzbenik/predmeti" element={<SluzbenikPredmeti />} />
             <Route path="/sluzbenik/studenti" element={<SluzbenikStudenti />} />
+            <Route path="/sluzbenik/prijave" element={<PrijaveSluzbenik />} />
           </>
         )}
       </Routes>
