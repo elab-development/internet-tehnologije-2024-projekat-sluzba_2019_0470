@@ -1,4 +1,3 @@
-import React from 'react';
 
 const DataTable = ({ columns, data, renderActions }) => (
   <table className="data-table">

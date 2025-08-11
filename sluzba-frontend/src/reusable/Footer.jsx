@@ -1,4 +1,4 @@
-import { FaArrowUp, FaScroll, FaUniversity } from 'react-icons/fa';
+import { FaArrowUp, FaUniversity } from 'react-icons/fa';
 import useScrollToTop from '../hooks/useScrollToTop';
 
 function Footer() {

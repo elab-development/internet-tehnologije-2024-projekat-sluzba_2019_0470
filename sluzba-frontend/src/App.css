@@ -363,7 +363,7 @@ ul, ol {
   z-index: 999;
 }
 
-.home, .prijava-ispita, .predmeti {
+.home, .prijava-ispita, .predmeti, .kalendar {
   padding: 50px 100px;
   margin-top: 56px; /* visina navbar-a */
   background-color: var(--blue-light);
@@ -508,6 +508,55 @@ ul, ol {
   transform: scale(1.2);
   vertical-align: middle;
 }
+
+.holiday-container {
+  padding: 20px;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+
+.holiday-year-label {
+  display: inline-block;
+  font-weight: 500;
+  margin: 10px 0 20px 0;
+  color: #17315e;
+ 
+}
+
+.holiday-year-input {
+  margin-left: 10px;
+  width: 200px;
+  padding: 6px 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  outline: none;
+}
+
+.holiday-year-input:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 0 2px rgba(119, 114, 114, 0.2);
+}
+
+.loading-text {
+  color: #718096;
+  margin-top: 10px;
+}
+
+/* GRID */
+.holiday-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.holiday-card-date {
+  padding: 6px 8px;
+  background-color: #ffffff;
+  size: 20px;
+  margin-left: -240px;
+}
+
 
 
 

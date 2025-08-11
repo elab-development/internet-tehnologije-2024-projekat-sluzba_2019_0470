@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaBars, FaTimes, FaHome, FaBook, FaClipboardList, FaUsers, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaBook, FaClipboardList, FaUsers, FaCalendar } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 const linksByRole = {
@@ -8,6 +8,7 @@ const linksByRole = {
     { to: '/home', label: 'Početna', icon: <FaHome /> },
     { to: '/predmeti', label: 'Predmeti', icon: <FaBook /> },
     { to: '/prijave', label: 'Prijava ispita', icon: <FaClipboardList /> },
+    { to: '/kalendar', label: 'Kalendar i Vreme', icon: <FaCalendar /> },
   ],
   sluzbenik: [
     { to: '/sluzbenik/home', label: 'Početna', icon: <FaUsers /> },
