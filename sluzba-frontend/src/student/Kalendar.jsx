@@ -22,6 +22,7 @@ const Kalendar = () => {
   return (
     <div className="holiday-container">
       <h1>Praznici u Srbiji ({year})</h1>
+      <p> Pogledajte detaljan pregled praznika u Srbiji za izabranu godinu.</p>
 
       <label className="holiday-year-label">
         Godina:

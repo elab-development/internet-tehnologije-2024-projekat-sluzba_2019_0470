@@ -512,7 +512,7 @@ ul, ol {
 .holiday-container {
   padding: 20px;
   max-width: 1100px;
-  margin: 20px auto;
+  margin: 50px auto;
 }
 
 
@@ -526,7 +526,7 @@ ul, ol {
 
 .holiday-year-input {
   margin-left: 10px;
-  width: 200px;
+  width: 260px;
   padding: 6px 8px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
@@ -546,9 +546,11 @@ ul, ol {
 /* GRID */
 .holiday-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  height: 400px;
 }
+
 
 .holiday-card-date {
   padding: 6px 8px;
