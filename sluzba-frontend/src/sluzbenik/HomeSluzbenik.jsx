@@ -1,8 +1,16 @@
+import Breadcrumbs from '../reusable/Breadcrumbs';
 
 function HomeSluzbenik() {
   return (
     <div className="home">
       <h1>Dobrodošli u Službeničku sekciju</h1>
+
+      <Breadcrumbs
+        items={[
+          { label: 'Početna', link: '/sluzbenik/home' }
+        ]}
+      />
+
       <p>Ovde možete pregledati i upravljati studentima, predmetima i prijavama ispita.</p>
 
       <div className="cards-container">

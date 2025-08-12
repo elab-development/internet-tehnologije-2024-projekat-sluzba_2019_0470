@@ -1,3 +1,4 @@
+import Breadcrumbs from '../reusable/Breadcrumbs';
 
 function Home() {
   return (

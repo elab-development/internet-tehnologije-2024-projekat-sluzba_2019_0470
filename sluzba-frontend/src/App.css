@@ -563,7 +563,7 @@ ul, ol {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .table-toolbar input,
@@ -590,6 +590,10 @@ ul, ol {
 .table-toolbar select {
   background-color: white;
   cursor: pointer;
+}
+
+.breadcrumbs {
+  margin: 10px 0 20px 0;
 }
 
 

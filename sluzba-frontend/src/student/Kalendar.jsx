@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useHolidays from "../hooks/useHolidays";
 import Pagination from "../reusable/Pagination";
+import Breadcrumbs from '../reusable/Breadcrumbs';
 
 const Kalendar = () => {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -22,6 +23,13 @@ const Kalendar = () => {
   return (
     <div className="holiday-container">
       <h1>Praznici u Srbiji ({year})</h1>
+      <Breadcrumbs
+        items={[
+          { label: 'Početna', link: '/home' },
+          { label: 'Kalendar' },
+          ]}
+        />
+
       <p> Pogledajte detaljan pregled praznika u Srbiji za izabranu godinu.</p>
 
       <label className="holiday-year-label">

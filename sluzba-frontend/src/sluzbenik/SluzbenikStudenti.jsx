@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import DataTable from '../reusable/DataTable';
 import Pagination from '../reusable/Pagination';
+import Breadcrumbs from '../reusable/Breadcrumbs';
 
 const columns = [
   { key: 'ime',            label: 'Ime'              },
@@ -50,6 +51,13 @@ const SluzbenikStudenti = () => {
   return (
     <div className="page">
       <h1>Lista studenata</h1>
+
+       <Breadcrumbs
+        items={[
+          { label: 'Početna', link: '/sluzbenik/home' },
+          { label: 'Studenti' },
+        ]}
+      />
 
       {loading && <p>Učitavanje…</p>}
       {error && !loading && <p style={{ color: 'red' }}>{error}</p>}
