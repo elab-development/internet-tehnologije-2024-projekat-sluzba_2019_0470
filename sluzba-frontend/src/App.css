@@ -559,6 +559,39 @@ ul, ol {
   margin-left: -240px;
 }
 
+.table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.table-toolbar input,
+.table-toolbar select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  min-width: 120px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.table-toolbar input:focus,
+.table-toolbar select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
+}
+
+.table-toolbar input {
+  flex: 1; /* Search input se širi */
+}
+
+.table-toolbar select {
+  background-color: white;
+  cursor: pointer;
+}
+
 
 
 

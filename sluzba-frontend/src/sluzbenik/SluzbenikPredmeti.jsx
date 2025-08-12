@@ -3,6 +3,7 @@ import axios from 'axios';
 import DataTable from '../reusable/DataTable';
 import Pagination from '../reusable/Pagination';
 import Modal from '../reusable/Modal';
+import TableToolbar from '../reusable/TableToolbar';
 
 const columns = [
   { key: 'naziv',    label: 'Naziv'   },
@@ -20,13 +21,21 @@ const SluzbenikPredmeti = () => {
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState(null);
 
+  // search + filters
+  const [search, setSearch] = useState('');
+  const [filters, setFilters] = useState({});
+
+  const filtersConfig = [
+    { key: 'godina', type: 'select', label: 'Godina', options: [1,2,3,4,5,6].map(g => ({ value: g, label: g })) },
+    { key: 'profesor', type: 'text', label: 'Profesor' }
+  ];
+
   // modal
   const [open, setOpen]           = useState(false);
   const [editing, setEditing]     = useState(null);
   const [form, setForm]           = useState({
     naziv:'', espb:'', godina:'', obavezan:false, semestar:'', profesor_id:''
   });
-
 
   const tokenHeader = () => ({
     headers:{
@@ -39,20 +48,22 @@ const SluzbenikPredmeti = () => {
     setLoading(true); setError(null);
     try{
       const r = await axios.get(`http://127.0.0.1:8000/api/sluzbenik/predmeti?page=${p}`, tokenHeader());
-      
       const rows = r.data.data.map(d => ({
         ...d,
-        profesor:`${d.profesor.ime} ${d.profesor.prezime}`
+        profesor: `${d.profesor.ime} ${d.profesor.prezime}`
       }));
       setPredmeti(rows);
       setPage(r.data.meta.current_page);
       setLastPage(r.data.meta.last_page);
-    }catch(e){ setError('Greška pri učitavanju'); console.error(e);}
-    finally  { setLoading(false); }
+    }catch(e){
+      setError('Greška pri učitavanju');
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(()=>{ loadPredmeti(page); }, [page]);
-
+  useEffect(() => { loadPredmeti(page); }, [page]);
 
   const openEdit = (row) => {
     setEditing(row.id);
@@ -66,7 +77,6 @@ const SluzbenikPredmeti = () => {
 
   const close = () => { setOpen(false); setEditing(null); };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
@@ -78,14 +88,35 @@ const SluzbenikPredmeti = () => {
       profesor_id: form.profesor_id || null
     };
     try{
-      await axios.put(`http://127.0.0.1:8000/api/sluzbenik/predmeti/${editing}`,
-                      payload, { ...tokenHeader(), 'Content-Type':'application/json'});
+      await axios.put(
+        `http://127.0.0.1:8000/api/sluzbenik/predmeti/${editing}`,
+        payload,
+        { ...tokenHeader(), 'Content-Type':'application/json' }
+      );
       close();
       loadPredmeti(page);
-    }catch(err){ console.error(err); alert('Validaciona greška – proveri unos'); }
+    }catch(err){
+      console.error(err);
+      alert('Validaciona greška – proveri unos');
+    }
   };
 
- 
+  const handleFilterChange = (key, value) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+  };
+
+  // filtriranje i pretraga
+  const viewRows = predmeti.filter(r => {
+    const bySearch = r.naziv.toLowerCase().includes(search.trim().toLowerCase());
+
+    const byFilters = Object.keys(filters).every(key => {
+      if (!filters[key]) return true;
+      return r[key]?.toString().toLowerCase().includes(filters[key].toString().toLowerCase());
+    });
+
+    return bySearch && byFilters;
+  });
+
   return (
     <div className="page">
       <h1>Lista predmeta</h1>
@@ -95,13 +126,19 @@ const SluzbenikPredmeti = () => {
 
       {!loading && !error && (
         <>
+          <TableToolbar
+            search={search}
+            onSearchChange={setSearch}
+            filtersConfig={filtersConfig}
+            filtersValues={filters}
+            onFilterChange={handleFilterChange}
+          />
+
           <DataTable
             columns={columns}
-            data={predmeti}
+            data={viewRows}
             renderActions={(row) => (
-              <>
-                <button onClick={() => openEdit(row)}>Izmeni</button>
-              </>
+              <button onClick={() => openEdit(row)}>Izmeni</button>
             )}
           />
 
@@ -111,7 +148,6 @@ const SluzbenikPredmeti = () => {
             onNext={() => setPage(p=>p+1)}
           />
 
-          {/* ===== modal ===== */}
           <Modal open={open} onClose={close} title="Ažuriraj predmet">
             <form onSubmit={handleSubmit} className="modal-form">
               <label>Naziv:
