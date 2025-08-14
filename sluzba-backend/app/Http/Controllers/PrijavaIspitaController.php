@@ -50,7 +50,7 @@ class PrijavaIspitaController extends Controller
             return response()->json(['error' => 'Pristup dozvoljen samo studentima.'], 403);
         }
 
-        $prijave = PrijavaIspita::with(['predmet', 'student'])
+        $prijave = PrijavaIspita::with(['predmet', 'user'])
             ->where('user_id', auth()->id())
             ->orderByDesc('created_at')
             ->get();
