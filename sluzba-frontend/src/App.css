@@ -2,7 +2,8 @@
 :root {
   --white: #ffffff;
   --blue-light: #5b8def;   /* svetlija plava */
-  --blue-dark: #3d6ecb;    /* tamnija plava */
+  --blue-dark: #3d6ecb; 
+  --pdf-light: #86aeff;   /* tamnija plava */
   --accent-1: #a7d948;     /* svetlo zelena */
   --accent-2: #7fae28;     /* tamnija zelena */
   --text-dark: #2c3e50;
@@ -249,7 +250,16 @@ ul, ol {
   padding: 1rem 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px var(--shadow-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pdf-card {
+  background-color: var(--pdf-light);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  margin-bottom: 2rem;
+  margin-top: 20px;
 }
 
 /* --- TIPOGRAFIJA - MALI DODACI --- */
@@ -596,6 +606,61 @@ ul, ol {
   margin: 10px 0 20px 0;
 }
 
+.dashboard-metrics {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--blue-dark);
+  border-radius: 12px;
+  color: white;
+}
+
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-box {
+  background-color: var(--pdf-light);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.metric-box h3 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.metric-box p {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.metric-box.green { background-color: #3b9c66; }
+.metric-box.red { background-color: #c94b4b; }
+.metric-box.gray { background-color: #555; }
+.metric-box.blue { background-color: #3b6ea5; }
+.metric-box.orange { background-color: #d9822b; }
+.metric-box.purple { background-color: #8e44ad; }
+.metric-box.gold { background-color: #bfa142; }
+
+.chart-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.chart-box {
+  flex: 1 1 400px;
+  background-color: var(--pdf-light);
+  padding: 1rem;
+  border-radius: 10px;
+}
 
 
 
