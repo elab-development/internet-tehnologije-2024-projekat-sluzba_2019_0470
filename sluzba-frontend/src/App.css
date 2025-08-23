@@ -662,5 +662,28 @@ ul, ol {
   border-radius: 10px;
 }
 
+.youtube-container {
+  padding: 20px;
+  padding-top: 50px;
+}
+
+.youtube-search-form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.youtube-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #2a5298;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
 

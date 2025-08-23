@@ -24,6 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+   "proxy": "https://hei.api.uni-foundation.eu",
+   
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,4 +47,5 @@
   "devDependencies": {
     "@types/react-modal": "^3.16.3"
   }
+  
 }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaBars, FaTimes, FaHome, FaBook, FaClipboardList, FaUsers, FaCalendar } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaBook, FaClipboardList, FaUsers, FaCalendar} from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import { MdVideoLibrary } from "react-icons/md";
+
+
 
 const linksByRole = {
   student: [
@@ -9,6 +12,7 @@ const linksByRole = {
     { to: '/predmeti', label: 'Predmeti', icon: <FaBook /> },
     { to: '/prijave', label: 'Prijava ispita', icon: <FaClipboardList /> },
     { to: '/kalendar', label: 'Kalendar i Vreme', icon: <FaCalendar /> },
+    {to: '/youtube', label: 'Youtube Edukacija', icon: <MdVideoLibrary/> },
   ],
   sluzbenik: [
     { to: '/sluzbenik/home', label: 'Početna', icon: <FaUsers /> },
