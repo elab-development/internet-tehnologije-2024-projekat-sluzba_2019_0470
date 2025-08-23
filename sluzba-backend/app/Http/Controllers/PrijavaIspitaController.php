@@ -14,7 +14,8 @@ class PrijavaIspitaController extends Controller
             return response()->json(['error' => 'Pristup dozvoljen samo službenim radnicima.'], 403);
         }
 
-        $prijave = PrijavaIspita::with(['user', 'predmet'])->get();
+        $perPage = 10;
+        $prijave = PrijavaIspita::with(['user', 'predmet'])->paginate($perPage);
 
         return PrijavaIspitaResource::collection($prijave);
     }
